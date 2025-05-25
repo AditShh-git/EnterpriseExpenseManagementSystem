@@ -1,4 +1,4 @@
-package com.team7.enterpriseexpensemanagementsystem.dto;
+package com.team7.enterpriseexpensemanagementsystem.payload.request;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -15,20 +15,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ExpenseDTO {
+public class ExpenseUpdateRequest {
+    @NotNull(message = "Id is required")
     private Long id;
-    @NotBlank(message = "Title must not be empty")
     private String title;
 
-    @NotNull(message = "Amount is required")
     @DecimalMin(value = "0.01", message = "Amount must be greater than zero")
     private Double amount;
-
 
     @PastOrPresent(message = "Expense date cannot be in the future")
     private LocalDate expenseDate;
 
-    @NotNull(message = "Category ID is required")
     private Long categoryId;
 }
-
